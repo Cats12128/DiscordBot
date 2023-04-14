@@ -11,30 +11,33 @@ client = discord.Client(intents=intents)
 
 last_typing_user = ""
 
+def displayAllChannels():
+  for guild in client.guilds:
+    print(f'Server Name={guild.name}')
+    for channel in guild.channels:
+      print(f'Channel Name =  {channel.name}')
+      print(f'Channel ID =  {channel.id}')
+      
+    if channel.name == "general":
+      general = client.get_channel(channel.id)
+      print(f'general = {general}')
+    else:
+      print("Not Found")
+    try:
+      print(channel.id)
+    except:
+      print("no id")
+    print(type(channel))
+
 
 @client.event
 async def on_ready():
-  print(f'We have logged in as {client.user}')
-
-  for guild in client.guilds:
-    print(f'guild is {guild}')
-    print(type(guild))
-    for channel in guild.channels:
-      if channel.name == "general":
-        general = client.get_channel(channel.id)
-        print(f'general = {general}')
-      else:
-        print("Not Found")
-      try:
-        print(channel.id)
-      except:
-        print("no id")
-      print(type(channel))
+  await displayAllChannels()
+ 
 
 
-#print(client.guilds[1])
-#general = client.get_channel(1096126509976146063)
-  await general.send("the for loop assigned general")
+
+  #await general.send(f'general = {general} and \nclient = {client}')
 
 
 @client.event
