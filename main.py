@@ -13,10 +13,10 @@ last_typing_user = ""
 
 def displayAllChannels():
   for guild in client.guilds:
-    print(f'Server Name={guild.name}')
+    print(f'Guild Name={guild.name}')
     for channel in guild.channels:
       print(f'Channel Name =  {channel.name}')
-      print(f'Channel ID =  {channel.id}')
+      print(f'Channel ID =  {channel.id}\n')
       
     if channel.name == "general":
       general = client.get_channel(channel.id)
@@ -33,10 +33,6 @@ def displayAllChannels():
 @client.event
 async def on_ready():
   await displayAllChannels()
- 
-
-
-
   #await general.send(f'general = {general} and \nclient = {client}')
 
 
